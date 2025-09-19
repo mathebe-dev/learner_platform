@@ -1,1 +1,19 @@
-<p class="bg-green-500">landing-page works!</p>
+<header>
+  <nav class="bg-gray-100 p-4 flex justify-end items-center">
+    <button
+      (click)="toggleRegister()"
+      class="w-24 h-10 bg-gradient-to-r from-[#0078D4] to-[#00A1F1] text-white rounded hover:brightness-110 font-bold">
+      SignUp
+    </button>
+
+    <button
+      (click)="toggleLogin()"
+      class="ml-4 w-24 h-10 bg-gradient-to-r from-[#00A1F1] to-[#0078D4] text-white rounded hover:brightness-110 font-bold">
+      LogIn
+    </button>
+  </nav>
+
+  <!-- Popups -->
+  <app-register [isOpen]="showRegister"></app-register>
+  <app-login [isOpen]="showLogin"></app-login>
+</header>
