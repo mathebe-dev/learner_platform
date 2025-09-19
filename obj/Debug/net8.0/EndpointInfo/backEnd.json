@@ -26,22 +26,22 @@
           "content": {
             "application/json-patch+json": {
               "schema": {
-                "$ref": "#/components/schemas/LearnerBio"
+                "$ref": "#/components/schemas/RegisteredLearner"
               }
             },
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LearnerBio"
+                "$ref": "#/components/schemas/RegisteredLearner"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LearnerBio"
+                "$ref": "#/components/schemas/RegisteredLearner"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LearnerBio"
+                "$ref": "#/components/schemas/RegisteredLearner"
               }
             }
           }
@@ -95,7 +95,7 @@
   },
   "components": {
     "schemas": {
-      "LearnerBio": {
+      "RegisteredLearner": {
         "type": "object",
         "properties": {
           "firstName": {
@@ -110,47 +110,15 @@
             "type": "string",
             "nullable": true
           },
-          "gender": {
-            "type": "string",
-            "nullable": true
-          },
-          "dateofBirth": {
+          "dateOfBirth": {
             "type": "string",
             "format": "date-time"
-          },
-          "idNumber": {
-            "type": "string",
-            "nullable": true
           },
           "email": {
             "type": "string",
             "nullable": true
           },
-          "cell": {
-            "type": "string",
-            "nullable": true
-          },
-          "country": {
-            "type": "string",
-            "nullable": true
-          },
-          "province": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "schoolName": {
-            "type": "string",
-            "nullable": true
-          },
-          "grade": {
-            "type": "string",
-            "nullable": true
-          },
-          "stream": {
+          "cellphone": {
             "type": "string",
             "nullable": true
           }

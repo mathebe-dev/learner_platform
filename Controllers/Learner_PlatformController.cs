@@ -37,43 +37,43 @@ namespace backEnd.Controllers
             return new JsonResult(table);
         }
 
-        [HttpPost("add_learner")]
-        public JsonResult add_learner(LearnerBio learner)
-        {
-            string query = @"
-            INSERT INTO LearnerBio 
-            (FirstName, MiddleName, LastName, Gender, DateofBirth, IDNumber, Email, Cell, Country, Province, City, SchoolName, Grade, Stream) 
-            VALUES 
-            (@FirstName, @MiddleName, @LastName, @Gender, @DateofBirth, @IDNumber, @Email, @Cell, @Country, @Province, @City, @SchoolName, @Grade, @Stream)";
 
-            DataTable table = new DataTable();
+
+        [HttpPost("add_learner")]
+        public IActionResult AddLearner([FromBody] RegisteredLearner learner)
+        {
+            if (learner == null)
+                return BadRequest(new { message = "Learner data is null" });
+
+            string query = @"
+        INSERT INTO RegisteredLearners
+        (FirstName, MiddleName, LastName, DateOfBirth, Email, Cellphone)
+        VALUES
+        (@FirstName, @MiddleName, @LastName, @DateOfBirth, @Email, @Cellphone)";
+
             string sqlDataSource = _configuration.GetConnectionString("learner_platform");
 
-            using (SqlConnection myCon = new SqlConnection(sqlDataSource))
+            using (SqlConnection conn = new SqlConnection(sqlDataSource))
             {
-                myCon.Open();
-                using (SqlCommand myCommand = new SqlCommand(query, myCon))
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    myCommand.Parameters.AddWithValue("@FirstName", learner.FirstName);
-                    myCommand.Parameters.AddWithValue("@MiddleName", (object)learner.MiddleName ?? DBNull.Value);
-                    myCommand.Parameters.AddWithValue("@LastName", learner.LastName);
-                    myCommand.Parameters.AddWithValue("@Gender", learner.Gender);
-                    myCommand.Parameters.AddWithValue("@DateofBirth", learner.DateofBirth);
-                    myCommand.Parameters.AddWithValue("@IDNumber", (object)learner.IDNumber ?? DBNull.Value);
-                    myCommand.Parameters.AddWithValue("@Email", learner.Email);
-                    myCommand.Parameters.AddWithValue("@Cell", learner.Cell);
-                    myCommand.Parameters.AddWithValue("@Country", learner.Country);
-                    myCommand.Parameters.AddWithValue("@Province", learner.Province);
-                    myCommand.Parameters.AddWithValue("@City", learner.City);
-                    myCommand.Parameters.AddWithValue("@SchoolName", learner.SchoolName);
-                    myCommand.Parameters.AddWithValue("@Grade", learner.Grade);
-                    myCommand.Parameters.AddWithValue("@Stream", learner.Stream);
+                    cmd.Parameters.AddWithValue("@FirstName", learner.FirstName ?? string.Empty);
+                    cmd.Parameters.AddWithValue("@MiddleName", (object?)learner.MiddleName ?? DBNull.Value);
+                    cmd.Parameters.AddWithValue("@LastName", learner.LastName ?? string.Empty);
+                    cmd.Parameters.AddWithValue("@DateOfBirth", learner.DateOfBirth);
+                    cmd.Parameters.AddWithValue("@Email", learner.Email ?? string.Empty);
+                    cmd.Parameters.AddWithValue("@Cellphone", learner.Cellphone ?? string.Empty);
 
-                    myCommand.ExecuteNonQuery();
+                    cmd.ExecuteNonQuery();
                 }
             }
 
-            return new JsonResult("Learner added successfully");
+            return Ok(new { message = "Learner added successfully" });
+
         }
+
+
+
     }
 }

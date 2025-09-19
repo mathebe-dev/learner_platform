@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "backEnd.Controllers.Learner_PlatformController",
-    "Method": "add_learner",
+    "Method": "AddLearner",
     "RelativePath": "add_learner",
     "HttpMethod": "POST",
     "IsController": true,
@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "learner",
-        "Type": "backEnd.Models.LearnerBio",
+        "Type": "backEnd.Models.RegisteredLearner",
         "IsRequired": true
       }
     ],

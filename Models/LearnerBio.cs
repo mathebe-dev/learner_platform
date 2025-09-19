@@ -6,7 +6,7 @@
         public string? MiddleName { get; set; }
         public string LastName { get; set; }
         public string Gender { get; set; }
-        public DateTime DateofBirth { get; set; }
+        public DateTime? DateofBirth { get; set; }
         public string? IDNumber { get; set; }
         public string Email { get; set; }
         public string Cell { get; set; }

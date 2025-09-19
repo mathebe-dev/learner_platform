@@ -43,3 +43,4 @@ C:\Users\conny\projects\learner_platform\backEnd\obj\Debug\net8.0\refint\backEnd
 C:\Users\conny\projects\learner_platform\backEnd\obj\Debug\net8.0\backEnd.pdb
 C:\Users\conny\projects\learner_platform\backEnd\obj\Debug\net8.0\backEnd.genruntimeconfig.cache
 C:\Users\conny\projects\learner_platform\backEnd\obj\Debug\net8.0\ref\backEnd.dll
+C:\Users\conny\projects\learner_platform\backEnd\obj\Debug\net8.0\backEnd.sourcelink.json
