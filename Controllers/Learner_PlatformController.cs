@@ -4,6 +4,10 @@ using System.Data;
 using System.Data.SqlClient;
 using backEnd.Models;
 
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using System.Threading.Tasks;
+
 namespace backEnd.Controllers
 {
     [ApiController]
@@ -18,7 +22,7 @@ namespace backEnd.Controllers
         [HttpGet("get_learner")]
         public JsonResult get_learner()
         {
-            string query = "SELECT * FROM LearnerBio";
+            string query = "SELECT * FROM RegisteredLearners";
             DataTable table = new DataTable();
             string sqlDataSource = _configuration.GetConnectionString("learner_platform");
 
@@ -40,7 +44,7 @@ namespace backEnd.Controllers
 
 
         [HttpPost("add_learner")]
-        public IActionResult AddLearner([FromBody] RegisteredLearner learner)
+        public async Task<IActionResult> AddLearner([FromBody] RegisteredLearner learner)
         {
             if (learner == null)
                 return BadRequest(new { message = "Learner data is null" });
@@ -69,11 +73,24 @@ namespace backEnd.Controllers
                 }
             }
 
-            return Ok(new { message = "Learner added successfully" });
+            // --- Send Email via SendGrid ---
+            var apiKey = "YOUR_SENDGRID_API_KEY";
+            var client = new SendGridClient(apiKey);
 
+            var from = new EmailAddress("connymoseri0303@gmail.com", "Learner Platform");
+            var subject = "Welcome to the Platform!";
+            var to = new EmailAddress(learner.Email, learner.FirstName);
+            var plainTextContent = $"Hi {learner.FirstName}, thanks for registering!";
+            var htmlContent = $"<strong>Hi {learner.FirstName},</strong><br/>Thanks for registering with us.";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+
+            await client.SendEmailAsync(msg);
+
+            return Ok(new { message = "Learner added successfully" });
         }
 
 
 
     }
 }
+
