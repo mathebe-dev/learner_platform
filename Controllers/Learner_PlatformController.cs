@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 namespace backEnd.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class Learner_PlatformController : ControllerBase
     {
         private IConfiguration _configuration;
@@ -19,8 +20,8 @@ namespace backEnd.Controllers
             _configuration = configuration;
         }
 
-        [HttpGet("get_learner")]
-        public JsonResult get_learner()
+        [HttpGet("get_learners")]
+        public JsonResult GetLearner()
         {
             string query = "SELECT * FROM RegisteredLearners";
             DataTable table = new DataTable();
@@ -74,7 +75,7 @@ namespace backEnd.Controllers
             }
 
             // --- Send Email via SendGrid ---
-            var apiKey = "YOUR_SENDGRID_API_KEY";
+            var apiKey = _configuration["SendGridApiKey"];
             var client = new SendGridClient(apiKey);
 
             var from = new EmailAddress("connymoseri0303@gmail.com", "Learner Platform");

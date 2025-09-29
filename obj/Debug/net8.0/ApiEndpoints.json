@@ -2,7 +2,7 @@
   {
     "ContainingType": "backEnd.Controllers.Learner_PlatformController",
     "Method": "AddLearner",
-    "RelativePath": "add_learner",
+    "RelativePath": "api/Learner_Platform/add_learner",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -17,8 +17,8 @@
   },
   {
     "ContainingType": "backEnd.Controllers.Learner_PlatformController",
-    "Method": "get_learner",
-    "RelativePath": "get_learner",
+    "Method": "GetLearner",
+    "RelativePath": "api/Learner_Platform/get_learner",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

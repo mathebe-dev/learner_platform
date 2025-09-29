@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/get_learner": {
+    "/api/Learner_Platform/get_learner": {
       "get": {
         "tags": [
           "Learner_Platform"
@@ -17,7 +17,7 @@
         }
       }
     },
-    "/add_learner": {
+    "/api/Learner_Platform/add_learner": {
       "post": {
         "tags": [
           "Learner_Platform"
