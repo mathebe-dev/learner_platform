@@ -25,7 +25,7 @@ namespace backEnd.Controllers
         {
             string query = "SELECT * FROM RegisteredLearners";
             DataTable table = new DataTable();
-            string sqlDataSource = _configuration.GetConnectionString("learner_platform");
+            string sqlDataSource = _configuration.GetConnectionString("databasebp");
 
             using (SqlConnection myCon = new SqlConnection(sqlDataSource))
             {
@@ -56,7 +56,7 @@ namespace backEnd.Controllers
         VALUES
         (@FirstName, @MiddleName, @LastName, @DateOfBirth, @Email, @Cellphone)";
 
-            string sqlDataSource = _configuration.GetConnectionString("learner_platform");
+            string sqlDataSource = _configuration.GetConnectionString("databasebp");
 
             using (SqlConnection conn = new SqlConnection(sqlDataSource))
             {

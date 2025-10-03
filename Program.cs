@@ -11,7 +11,11 @@ builder.Services.AddControllersWithViews().AddNewtonsoftJson();
 var app = builder.Build();
 
 // Enable CORS
-app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
+app.UseCors(x => x
+    .WithOrigins("http://localhost:4200/")
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+);
 
 // Enable Swagger for all environments
 app.UseSwagger();
